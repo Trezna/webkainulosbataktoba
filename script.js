@@ -4,8 +4,8 @@ document.addEventListener('DOMContentLoaded', () => {
         UB1: {
             name: "Ulos Ragi Hidup",
             usageCategory: "pernikahan duka-cita",
-            mainImage: "https://drive.google.com/uc?id=1zUrjPlUVvS_EnnVJ125wUPxigOte7pAE",
-            galleryImages: ["https://drive.google.com/uc?id=1zUrjPlUVvS_EnnVJ125wUPxigOte7pAE"],
+            mainImage: "images/ulos_ragi_hidup.jpg", 
+            galleryImages: ["images/ulos_ragi_hidup.jpg"],
             description: "Ulos Ragi Hidup melambangkan kehidupan dan kebahagian dalam keturunan dengan umur yang panjang (saur matua).",
             price: "Rp 300.000 - Rp 2.800.000",
             usageDetail: "Digunakan sebagai hadiah atau kenangan pada orang yang menikah, sebagai busana adat pada acara kematian. Ulos ini melambangkan doa untuk kebahagiaan pada suatu acara adat."
@@ -13,8 +13,8 @@ document.addEventListener('DOMContentLoaded', () => {
         UB2: {
             name: "Ulos Ragi Hotang",
             usageCategory: "pernikahan duka-cita",
-            mainImage: "https://drive.google.com/uc?id=18YMPrU5mR46UIMcbMpcOxh4Teld70WQL",
-            galleryImages: ["https://drive.google.com/uc?id=18YMPrU5mR46UIMcbMpcOxh4Teld70WQL"],
+            mainImage: "images/ulos_ragi_hotang.jpg", 
+            galleryImages: ["images/ulos_ragi_hotang.jpg"],
             description: "Sering juga disebut sebagai Ulos Hela. Pemberian Ulos Hela memiliki makna bahwa orang tua pengantin perempuan telah menyetujui putrinya dipersunting oleh laki-laki yang disebut sebagai 'Hela' (menantu).",
             price: "Rp 150.000 - Rp 500.000",
             usageDetail: "Digunakan sebagai hadiah pada orang yang menikah (khususnya untuk menantu laki-laki) dan pada acara kematian oleh saudara kandung almarhum."
@@ -22,8 +22,8 @@ document.addEventListener('DOMContentLoaded', () => {
         UB3: {
             name: "Ulos Sibolang",
             usageCategory: "duka-cita kelahiran",
-            mainImage: "https://drive.google.com/uc?id=191ipSaHkNdV_TLUQiZ9tynCETywcta2y",
-            galleryImages: ["https://drive.google.com/uc?id=191ipSaHkNdV_TLUQiZ9tynCETywcta2y"],
+            mainImage: "images/ulos_sibolang.jpg", 
+            galleryImages: ["images/ulos_sibolang.jpg"],
             description: "Menjadi simbol duka cita terutama di momen kematian orang dewasa yang belum memiliki cucu, dan duda serta janda yang ditinggal mati pasangannya.",
             price: "Rp 420.000 - Rp 2.100.000",
             usageDetail: "Pada acara kematian untuk orang yang belum memiliki cucu dan pada acara kelahiran sebagai simbol harapan."
@@ -31,8 +31,8 @@ document.addEventListener('DOMContentLoaded', () => {
         UB4: {
             name: "Ulos Pinuncaan",
             usageCategory: "pernikahan duka-cita",
-            mainImage: "https://drive.google.com/uc?id=154pw-ITZXy_SNRIgcoWdLe3H0ZpsMIIn",
-            galleryImages: ["https://drive.google.com/uc?id=154pw-ITZXy_SNRIgcoWdLe3H0ZpsMIIn"],
+            mainImage: "images/ulos_pinuncaan.jpg", 
+            galleryImages: ["images/ulos_pinuncaan.jpg"],
             description: "Merupakan salah satu jenis kain termahal, terdiri dari lima bagian yang ditenun secara terpisah dan disatukan. Ulos ini biasa dipakai oleh raja adat dan tuan rumah.",
             price: "Rp 250.000 - Rp 1.200.000",
             usageDetail: "Dipakai oleh raja adat, orang tua mempelai, dan tuan rumah dalam upacara adat besar (pernikahan atau kematian)."
@@ -40,8 +40,8 @@ document.addEventListener('DOMContentLoaded', () => {
         UB5: {
             name: "Ulos Mangiring",
             usageCategory: "kelahiran",
-            mainImage: "https://drive.google.com/uc?id=1TdT-Q2Xk1OMOknef9vV9_n9mStz9VAyn",
-            galleryImages: ["https://drive.google.com/uc?id=1TdT-Q2Xk1OMOknef9vV9_n9mStz9VAyn"],
+            mainImage: "images/ulos_mangiring.jpg", 
+            galleryImages: ["images/ulos_mangiring.jpg"],
             description: "Menunjukkan harapan agar kelahiran anak ini diiringi dengan kelahiran anak seterusnya. Digunakan sebagai selendang (parompa) untuk menggendong bayi.",
             price: "Rp 170.000 - Rp 350.000",
             usageDetail: "Diberikan kepada bayi yang baru lahir, utamanya anak pertama, sebagai perlambang penerus generasi."
@@ -49,8 +49,8 @@ document.addEventListener('DOMContentLoaded', () => {
         UB6: {
             name: "Ulos Bintang Maratur",
             usageCategory: "kelahiran",
-            mainImage: "https://drive.google.com/uc?id=1TpDUgz5y9BKb_FfQSZxu901IWvsVek3c",
-            galleryImages: ["https://drive.google.com/uc?id=1TpDUgz5y9BKb_FfQSZxu901IWvsVek3c"],
+            mainImage: "images/ulos_bintang_maratur.jpg", 
+            galleryImages: ["images/ulos_bintang_maratur.jpg"],
             description: "Menjadi simbol ucapan suka cita atau berita gembira. Motifnya melambangkan keteraturan dan restu.",
             price: "Rp 150.000 - Rp 370.000",
             usageDetail: "Diberikan saat syukuran kehamilan tujuh bulanan atau saat memasuki rumah baru."
@@ -58,8 +58,8 @@ document.addEventListener('DOMContentLoaded', () => {
         UB7: {
             name: "Ulos Antak-Antak",
             usageCategory: "duka-cita",
-            mainImage: "https://drive.google.com/uc?id=1iysjyXZfjtzyZzIxze5s6V8lNTcmESHU",
-            galleryImages: ["https://drive.google.com/uc?id=1iysjyXZfjtzyZzIxze5s6V8lNTcmESHU"],
+            mainImage: "images/ulos_antak_antak.jpg", 
+            galleryImages: ["images/ulos_antak_antak.jpg"],
             description: "Dipakai sebagai selendang orang tua untuk melayat orang yang meninggal, selain itu ulos ini juga dipakai sebagai kain yang dililit pada waktu acara manortor (menari).",
             price: "Rp 130.000 - Rp 390.000",
             usageDetail: "Digunakan oleh orang tua untuk melayat dan menari saat upacara adat."
@@ -67,8 +67,8 @@ document.addEventListener('DOMContentLoaded', () => {
         UB8: {
             name: "Ulos Sadum",
             usageCategory: "pernikahan",
-            mainImage: "https://drive.google.com/uc?id=1WldrsosOeObRlg3G_D4P4Rem7ZkS0Nnp",
-            galleryImages: ["https://drive.google.com/uc?id=1WldrsosOeObRlg3G_D4P4Rem7ZkS0Nnp"],
+            mainImage: "images/ulos_sadum.jpg", 
+            galleryImages: ["images/ulos_sadum.jpg"],
             description: "Penuh warna-warni ceria yang cocok untuk suasana suka cita, memiliki arti semangat. Sering digunakan sebagai kenang-kenangan.",
             price: "Rp 70.000 - Rp 150.000",
             usageDetail: "Digunakan dalam acara pernikahan, acara sukacita lainnya, serta dapat digunakan sebagai hadiah atau dekorasi."
@@ -76,8 +76,8 @@ document.addEventListener('DOMContentLoaded', () => {
         UB9: {
             name: "Ulos Tumtuman",
             usageCategory: "pernikahan",
-            mainImage: "https://drive.google.com/uc?id=17muxD06PRwagfyzB9PFnzhbv4NwBu054",
-            galleryImages: ["https://drive.google.com/uc?id=17muxD06PRwagfyzB9PFnzhbv4NwBu054"],
+            mainImage: "images/ulos_tumtuman.jpg", 
+            galleryImages: ["images/ulos_tumtuman.jpg"],
             description: "Dipakai sebagai ikat kepala (tali-tali) oleh seseorang untuk menunjukkan bahwa yang bersangkutan adalah hasuhutan (tuan rumah) atau anak pertama.",
             price: "Rp 150.000 - Rp 2.200.000",
             usageDetail: "Digunakan sebagai ikat kepala oleh pihak perempuan pada acara pernikahan dan sebagai sarung dari mempelai wanita."
@@ -85,8 +85,8 @@ document.addEventListener('DOMContentLoaded', () => {
         UB10: {
             name: "Ulos Suri-Suri Ganjang",
             usageCategory: "pernikahan",
-            mainImage: "https://drive.google.com/uc?id=1zt1vhDnkHWEP4FES1-9yW-JH5V1U-m4L",
-            galleryImages: ["https://drive.google.com/uc?id=1zt1vhDnkHWEP4FES1-9yW-JH5V1U-m4L"],
+            mainImage: "images/ulos_suri_suri_ganjang.jpg", 
+            galleryImages: ["images/ulos_suri_suri_ganjang.jpg"],
             description: "Memiliki motif yang lembut dan elegan, melambangkan kecantikan dan keanggunan. Dipakai sebagai selendang (ampe-ampe) oleh pihak orang tua perempuan.",
             price: "Rp 300.000 - Rp 600.000",
             usageDetail: "Digunakan untuk mengulosi pengantin dari pihak wanita (hula-hula) dan sebagai busana pemusik adat."
@@ -94,8 +94,8 @@ document.addEventListener('DOMContentLoaded', () => {
         UB11: {
             name: "Ulos Simpar",
             usageCategory: "pernikahan",
-            mainImage: "https://drive.google.com/uc?id=1Ef3ozvQyaSKgl_ouu4UxDBebRgMBh9hD",
-            galleryImages: ["https://drive.google.com/uc?id=1Ef3ozvQyaSKgl_ouu4UxDBebRgMBh9hD"],
+            mainImage: "images/ulos_simpar.jpg", 
+            galleryImages: ["images/ulos_simpar.jpg"],
             description: "Umumnya digunakan sebagai selendang saat dalam upacara adat yang khususnya hanya sebagai meramaikan (panoropi) atau tamu biasa.",
             price: "Rp 30.000 - Rp 400.000",
             usageDetail: "Digunakan oleh wanita saat menghadiri upacara adat sebagai selendang saat menortor."
@@ -103,8 +103,8 @@ document.addEventListener('DOMContentLoaded', () => {
         UB12: {
             name: "Ulos Ragi Hunting",
             usageCategory: "pernikahan",
-            mainImage: "https://drive.google.com/uc?id=1YmHzMOHKYMwsAYr1C26rOq5Vp463mgeT",
-            galleryImages: ["https://drive.google.com/uc?id=1YmHzMOHKYMwsAYr1C26rOq5Vp463mgeT"],
+            mainImage: "images/ulos_ragi_hunting.jpg", 
+            galleryImages: ["images/ulos_ragi_hunting.jpg"],
             description: "Pada jaman dulu, gadis-gadis memakai Ulos Ragi Huting ini sebagai pakaian sehari-hari yang dililitkan di dada (Hobahoba) yang menunjukkan bahwa ia seorang putri batak.",
             price: "Rp 150.000 - Rp 250.000",
             usageDetail: "Digunakan oleh anak perempuan (gadis) dari keluarga yang mengadakan acara, dililitkan di dada."
@@ -112,8 +112,8 @@ document.addEventListener('DOMContentLoaded', () => {
         UB13: {
             name: "Ulos Harungguan",
             usageCategory: "pernikahan",
-            mainImage: "https://drive.google.com/uc?id=1NPu3SlY--psBqv65s5HgbrwM4qi5GMm6",
-            galleryImages: ["https://drive.google.com/uc?id=1NPu3SlY--psBqv65s5HgbrwM4qi5GMm6"],
+            mainImage: "images/ulos_harungguan.jpg", 
+            galleryImages: ["images/ulos_harungguan.jpg"],
             description: "Digunakan sebagai selimut bagi keluarga dari golongan kaya. Jika meninggal, akan diselimutkan kepada jasadnya.",
             price: "Rp 400.000 - Rp 2.500.000",
             usageDetail: "Sebagai hadiah dari orang tua mempelai wanita kepada pasangan anaknya dan digunakan oleh para raja adat sebagai selendang."
@@ -121,8 +121,8 @@ document.addEventListener('DOMContentLoaded', () => {
         UB14: {
             name: "Ulos Bolean",
             usageCategory: "duka-cita",
-            mainImage: "https://drive.google.com/uc?id=1L5OuFLAtyyoOC_2TriCayXpPTtVg99eS",
-            galleryImages: ["https://drive.google.com/uc?id=1L5OuFLAtyyoOC_2TriCayXpPTtVg99eS"],
+            mainImage: "images/ulos_bolean.jpg", 
+            galleryImages: ["images/ulos_bolean.jpg"],
             description: "Berfungsi sebagai pelengkap baju adat dalam berbagai upacara tradisional, khususnya sebagai selendang saat acara duka cita.",
             price: "Rp 300.000 - Rp 5.000.000",
             usageDetail: "Digunakan oleh tamu undangan dalam acara dukacita sebagai selendang."
