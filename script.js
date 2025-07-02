@@ -1,5 +1,5 @@
 document.addEventListener('DOMContentLoaded', () => {
-    // DATA UTAMA APLIKASI
+    
     const ulosData = {
         UB1: {
             name: "Ulos Ragi Hidup",
@@ -143,7 +143,8 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     };
     
-    // Elemen DOM
+   
+
     const btnHome = document.getElementById('btn-home');
     const btnGallery = document.getElementById('btn-gallery');
     const homeSection = document.getElementById('home-section');
@@ -153,7 +154,6 @@ document.addEventListener('DOMContentLoaded', () => {
     const searchBar = document.getElementById('search-bar');
     const filterButtonsContainer = document.getElementById('filter-buttons');
 
-    // FUNGSI UNTUK MEMBUAT KARTU GALERI SECARA OTOMATIS
     function renderGallery() {
         ulosGallery.innerHTML = '';
         for (const id in ulosData) {
@@ -169,7 +169,6 @@ document.addEventListener('DOMContentLoaded', () => {
         addCardEventListeners();
     }
 
-    // Fungsi Navigasi Utama
     function showSection(sectionId) {
         homeSection.classList.remove('active');
         gallerySection.classList.remove('active');
@@ -185,12 +184,12 @@ document.addEventListener('DOMContentLoaded', () => {
     btnHome.addEventListener('click', () => showSection('home'));
     btnGallery.addEventListener('click', () => showSection('gallery'));
 
-    // FUNGSI UNTUK MENAMPILKAN DETAIL ULOS
     function showDetail(ulosId) {
         const data = ulosData[ulosId];
         let galleryHTML = '';
-        let referensiHTML = '';
+        let referensiHTML = ''; 
 
+        
         if (data.galleryImages && data.galleryImages.length > 1) {
             let thumbnailsHTML = '';
             data.galleryImages.forEach((imgSrc, index) => {
@@ -208,17 +207,21 @@ document.addEventListener('DOMContentLoaded', () => {
                 </div>`;
         }
         
+        
         if (data.referensi) {
             referensiHTML = '<h3>Referensi</h3><ul class="referensi-list">';
             const refs = data.referensi.split(',');
             refs.forEach(ref => {
                 const parts = ref.split(':');
-                const type = parts[0].trim().replace('_', ' ');
+                const type = parts[0].trim().replace(/_/g, ' '); 
                 const url = parts.slice(1).join(':').trim();
-                referensiHTML += `<li><a href="${url}" target="_blank">Sumber ${type}</a></li>`;
+                
+                const capitalizedType = type.charAt(0).toUpperCase() + type.slice(1);
+                referensiHTML += `<li><a href="${url}" target="_blank">Sumber ${capitalizedType}</a></li>`;
             });
             referensiHTML += '</ul>';
         }
+        
 
         detailSection.innerHTML = `
             <div class="ulos-detail">
@@ -235,8 +238,7 @@ document.addEventListener('DOMContentLoaded', () => {
                         <td>${data.price}</td>
                     </tr>
                 </table>
-                ${referensiHTML}
-            </div>`;
+                ${referensiHTML} </div>`;
 
         detailSection.querySelector('.back-button').addEventListener('click', () => {
              showSection('gallery');
