@@ -272,3 +272,29 @@ header nav button:hover, header nav button.nav-active {
 .thumbnail.active {
     border-color: var(--primary-color);
 }
+
+/* Styling untuk Daftar Referensi */
+.referensi-list {
+    list-style: none;
+    padding-left: 0;
+    margin-top: 20px;
+    border-top: 1px solid #eee;
+    padding-top: 20px;
+}
+
+.referensi-list li {
+    margin-bottom: 8px;
+}
+
+.referensi-list a {
+    text-decoration: none;
+    color: var(--primary-color);
+    transition: all 0.2s ease-in-out;
+    border-bottom: 1px dotted var(--primary-color);
+    padding-bottom: 2px;
+}
+
+.referensi-list a:hover {
+    color: #333;
+    border-bottom-color: #333;
+}
