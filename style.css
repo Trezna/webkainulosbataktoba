@@ -231,3 +231,44 @@ header nav button:hover, header nav button.nav-active {
         margin-left: 0;
     }
 }
+/* Styling untuk Galeri di Halaman Detail */
+.detail-gallery {
+    margin: 20px 0;
+}
+
+.main-image-container {
+    margin-bottom: 15px;
+    text-align: center;
+}
+
+#main-detail-image {
+    max-width: 100%;
+    max-height: 500px;
+    border-radius: 8px;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+}
+
+.thumbnail-container {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+    justify-content: center;
+}
+
+.thumbnail {
+    width: 80px;
+    height: 80px;
+    object-fit: cover;
+    border-radius: 5px;
+    cursor: pointer;
+    border: 2px solid transparent;
+    transition: border-color 0.3s ease, transform 0.3s ease;
+}
+
+.thumbnail:hover {
+    transform: scale(1.05);
+}
+
+.thumbnail.active {
+    border-color: var(--primary-color);
+}
