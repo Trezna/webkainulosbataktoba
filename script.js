@@ -340,3 +340,54 @@ document.addEventListener('DOMContentLoaded', () => {
     renderGallery();
     showSection('home');
 });
+
+ // ... (Semua kode fungsi lainnya dari renderGallery hingga filterButtonsContainer tetap sama)
+
+    const btnHome = document.getElementById('btn-home');
+    const btnGallery = document.getElementById('btn-gallery');
+    // ... dan semua elemen DOM lainnya
+
+    // [PASTIKAN SEMUA FUNGSI LAMA ANDA ADA DI SINI]
+    function renderGallery() { /* ... kode ... */ }
+    function showSection(sectionId) { /* ... kode ... */ }
+    btnHome.addEventListener('click', () => showSection('home'));
+    btnGallery.addEventListener('click', () => showSection('gallery'));
+    function showDetail(ulosId) { /* ... kode ... */ }
+    function addCardEventListeners() { /* ... kode ... */ }
+    searchBar.addEventListener('keyup', e => renderGallery(e.target.value));
+    filterButtonsContainer.addEventListener('click', e => { /* ... kode ... */ });
+    
+    renderGallery();
+    showSection('home');
+    
+    // --- KODE CHATBOT DIPERBARUI DENGAN LOGIKA TOGGLE ---
+    const btnChatbot = document.getElementById('btn-chatbot');
+    btnChatbot.addEventListener('click', () => {
+      // Periksa apakah API Chatbase sudah siap
+      if (window.chatbase && typeof window.chatbase.isOpen === 'function') {
+        // Cek apakah chatbot sedang terbuka
+        if (window.chatbase.isOpen()) {
+          // Jika sedang terbuka, panggil fungsi untuk menutup
+          window.chatbase.close();
+        } else {
+          // Jika sedang tertutup, panggil fungsi untuk membuka
+          window.chatbase.open();
+        }
+      } else {
+        console.error("Chatbase API tidak ditemukan atau belum dimuat.");
+        alert("Fitur chatbot sedang tidak tersedia saat ini.");
+      }
+    });
+
+    // --- KODE BARU: MENAMBAHKAN FUNGSI TOMBOL ESCAPE UNTUK MENUTUP CHAT ---
+    document.addEventListener('keydown', (event) => {
+        // Cek apakah tombol yang ditekan adalah 'Escape'
+        if (event.key === 'Escape') {
+            // Cek apakah chatbot sedang terbuka
+            if (window.chatbase && typeof window.chatbase.isOpen === 'function' && window.chatbase.isOpen()) {
+                // Jika ya, tutup chatbot
+                window.chatbase.close();
+            }
+        }
+    });
+});
