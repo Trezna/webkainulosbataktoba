@@ -7,7 +7,6 @@ document.addEventListener('DOMContentLoaded', () => {
             mainImage: "images/ulos_ragi_hidup.png",
             galleryImages: ["images/ulos_ragi_hidup.png"],
             description: "Ulos Ragi Hidup melambangkan kehidupan dan kebahagian dalam keturunan dengan umur yang panjang (saur matua).",
-            // --- DATA BARU DITAMBAHKAN DI SINI ---
             deskripsiWarna: "Ulos ini berwarna merah kecoklatan di bagian kanan dan kiri, di bagian tengah berwarna biru hitam dengan wanra merah berbentuk persegi diagonal. Dibagian bawah dan atas tengah berwarna putih di penuhi diagonal merah dan hijau yang ter struktur membentuk rantai. di bagian bingkai ulos berwarna coklat dan warna emas sebagai pembatas untuk sisi kanan dan kiri.",
             deskripsiMotif: "Ulos ini memiliki motif persegi geometris yang berwarna emas sebagai pemisah antara kiri, kanan dan tengah dan dibagian tengan berbentuk segitiga yang saling menyambung berwarna biru dan merah kemudian dipisah dengan garis zig-zag merah padan bagian segitiga geometris yang memenuhi latar putih.",
             price: "Rp 300.000 - Rp 2.800.000",
@@ -186,10 +185,10 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     };
     
-    // ... (Sisa kode dari sini ke bawah tetap sama, kecuali fungsi showDetail)
-
+    // -- Semua Elemen DOM Didefinisikan di sini --
     const btnHome = document.getElementById('btn-home');
     const btnGallery = document.getElementById('btn-gallery');
+    const btnChatbot = document.getElementById('btn-chatbot');
     const homeSection = document.getElementById('home-section');
     const gallerySection = document.getElementById('gallery-section');
     const detailSection = document.getElementById('detail-section');
@@ -197,16 +196,12 @@ document.addEventListener('DOMContentLoaded', () => {
     const searchBar = document.getElementById('search-bar');
     const filterButtonsContainer = document.getElementById('filter-buttons');
 
+    // -- Semua FUNGSI Didefinisikan di sini --
     function renderGallery() {
         ulosGallery.innerHTML = '';
         for (const id in ulosData) {
             const data = ulosData[id];
-            const card = `
-                <div class="ulos-card" data-id="${id}" data-name="${data.name}" data-usage="${data.usageCategory}">
-                    <img src="${data.mainImage}" alt="${data.name}">
-                    <h3>${data.name}</h3>
-                </div>
-            `;
+            const card = `<div class="ulos-card" data-id="${id}" data-name="${data.name}" data-usage="${data.usageCategory}"><img src="${data.mainImage}" alt="${data.name}"><h3>${data.name}</h3></div>`;
             ulosGallery.innerHTML += card;
         }
         addCardEventListeners();
@@ -217,43 +212,28 @@ document.addEventListener('DOMContentLoaded', () => {
         gallerySection.classList.remove('active');
         detailSection.classList.remove('active');
         const activeSection = document.getElementById(`${sectionId}-section`);
-        if (activeSection) {
-            activeSection.classList.add('active');
-        }
+        if (activeSection) activeSection.classList.add('active');
         btnHome.classList.toggle('nav-active', sectionId === 'home');
         btnGallery.classList.toggle('nav-active', sectionId === 'gallery');
     }
 
-    btnHome.addEventListener('click', () => showSection('home'));
-    btnGallery.addEventListener('click', () => showSection('gallery'));
-
-    // <<< FUNGSI INI YANG DIUBAH TATA LETAKNYA >>>
     function showDetail(ulosId) {
         const data = ulosData[ulosId];
-        let galleryHTML = '';
-        let referensiHTML = '';
+        let galleryHTML = '', referensiHTML = '';
 
         if (data.galleryImages && data.galleryImages.length > 1) {
             let thumbnailsHTML = '';
             data.galleryImages.forEach((imgSrc, index) => {
                 thumbnailsHTML += `<img src="${imgSrc}" alt="Thumbnail ${data.name} ${index + 1}" class="thumbnail ${index === 0 ? 'active' : ''}">`;
             });
-            galleryHTML = `
-                <div class="detail-gallery">
-                    <div class="main-image-container"><img src="${data.mainImage}" alt="${data.name}" id="main-detail-image"></div>
-                    <div class="thumbnail-container">${thumbnailsHTML}</div>
-                </div>`;
+            galleryHTML = `<div class="detail-gallery"><div class="main-image-container"><img src="${data.mainImage}" alt="${data.name}" id="main-detail-image"></div><div class="thumbnail-container">${thumbnailsHTML}</div></div>`;
         } else {
-            galleryHTML = `
-                <div class="detail-gallery">
-                    <div class="main-image-container"><img src="${data.mainImage}" alt="${data.name}" id="main-detail-image"></div>
-                </div>`;
+            galleryHTML = `<div class="detail-gallery"><div class="main-image-container"><img src="${data.mainImage}" alt="${data.name}" id="main-detail-image"></div></div>`;
         }
         
         if (data.referensi) {
             referensiHTML = '<h3>Referensi</h3><ul class="referensi-list">';
-            const refs = data.referensi.split(',');
-            refs.forEach(ref => {
+            data.referensi.split(',').forEach(ref => {
                 const parts = ref.split(':');
                 const type = parts[0].trim().replace(/_/g, ' ');
                 const url = parts.slice(1).join(':').trim();
@@ -263,37 +243,21 @@ document.addEventListener('DOMContentLoaded', () => {
             referensiHTML += '</ul>';
         }
 
-        // --- TATA LETAK BARU DITERAPKAN DI SINI ---
         detailSection.innerHTML = `
             <div class="ulos-detail">
                 <button class="back-button">&larr; Kembali ke Galeri</button>
                 <h2>${data.name}</h2>
                 ${galleryHTML}
-                <h3>Deskripsi</h3>
-                <p>${data.description}</p>
-                
-                <h3>Deskripsi Warna</h3>
-                <p>${data.deskripsiWarna}</p>
-
-                <h3>Deskripsi Motif</h3>
-                <p>${data.deskripsiMotif}</p>
-                
-                <h3>Penggunaan dalam Acara</h3>
-                <p>${data.penggunaanDalamAcara}</p>
-                
-                <h3>Pengguna</h3>
-                <p>${data.pengguna}</p>
-                
-                <h3>Perkiraan Harga</h3>
-                <p>${data.price}</p>
-                
+                <h3>Deskripsi</h3><p>${data.description}</p>
+                <h3>Deskripsi Warna</h3><p>${data.deskripsiWarna}</p>
+                <h3>Deskripsi Motif</h3><p>${data.deskripsiMotif}</p>
+                <h3>Penggunaan dalam Acara</h3><p>${data.penggunaanDalamAcara}</p>
+                <h3>Pengguna</h3><p>${data.pengguna}</p>
+                <h3>Perkiraan Harga</h3><p>${data.price}</p>
                 ${referensiHTML}
             </div>`;
-        // --- AKHIR BAGIAN YANG DIUBAH ---
 
-        detailSection.querySelector('.back-button').addEventListener('click', () => {
-             showSection('gallery');
-        });
+        detailSection.querySelector('.back-button').addEventListener('click', () => showSection('gallery'));
         
         if (data.galleryImages && data.galleryImages.length > 1) {
             detailSection.querySelectorAll('.thumbnail').forEach(thumb => {
@@ -309,69 +273,30 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 
     function addCardEventListeners() {
-        document.querySelectorAll('.ulos-card').forEach(card => {
-            card.addEventListener('click', () => {
-                const ulosId = card.getAttribute('data-id');
-                showDetail(ulosId);
-            });
-        });
+        document.querySelectorAll('.ulos-card').forEach(card => card.addEventListener('click', () => showDetail(card.dataset.id)));
     }
 
-    searchBar.addEventListener('keyup', (e) => {
-        const searchTerm = e.target.value.toLowerCase();
-        document.querySelectorAll('.ulos-card').forEach(card => {
-            const name = card.getAttribute('data-name').toLowerCase();
-            card.style.display = name.includes(searchTerm) ? 'block' : 'none';
-        });
-    });
-
-    filterButtonsContainer.addEventListener('click', (e) => {
+    // -- Semua EVENT LISTENER Didaftarkan di sini --
+    btnHome.addEventListener('click', () => showSection('home'));
+    btnGallery.addEventListener('click', () => showSection('gallery'));
+    searchBar.addEventListener('keyup', e => renderGallery(e.target.value));
+    filterButtonsContainer.addEventListener('click', e => {
         if (e.target.classList.contains('filter-btn')) {
             filterButtonsContainer.querySelector('.active').classList.remove('active');
             e.target.classList.add('active');
-            const filter = e.target.getAttribute('data-filter');
+            const filter = e.target.dataset.filter;
             document.querySelectorAll('.ulos-card').forEach(card => {
-                const usage = card.getAttribute('data-usage');
-                card.style.display = (filter === 'all' || usage.includes(filter)) ? 'block' : 'none';
+                card.style.display = (filter === 'all' || card.dataset.usage.includes(filter)) ? 'block' : 'none';
             });
         }
     });
-    
-    renderGallery();
-    showSection('home');
-});
 
- // ... (Semua kode fungsi lainnya dari renderGallery hingga filterButtonsContainer tetap sama)
-
-    const btnHome = document.getElementById('btn-home');
-    const btnGallery = document.getElementById('btn-gallery');
-    // ... dan semua elemen DOM lainnya
-
-    // [PASTIKAN SEMUA FUNGSI LAMA ANDA ADA DI SINI]
-    function renderGallery() { /* ... kode ... */ }
-    function showSection(sectionId) { /* ... kode ... */ }
-    btnHome.addEventListener('click', () => showSection('home'));
-    btnGallery.addEventListener('click', () => showSection('gallery'));
-    function showDetail(ulosId) { /* ... kode ... */ }
-    function addCardEventListeners() { /* ... kode ... */ }
-    searchBar.addEventListener('keyup', e => renderGallery(e.target.value));
-    filterButtonsContainer.addEventListener('click', e => { /* ... kode ... */ });
-    
-    renderGallery();
-    showSection('home');
-    
-    // --- KODE CHATBOT DIPERBARUI DENGAN LOGIKA TOGGLE ---
-    const btnChatbot = document.getElementById('btn-chatbot');
     btnChatbot.addEventListener('click', () => {
-      // Periksa apakah API Chatbase sudah siap
       if (window.chatbase && typeof window.chatbase.isOpen === 'function') {
-        // Cek apakah chatbot sedang terbuka
         if (window.chatbase.isOpen()) {
-          // Jika sedang terbuka, panggil fungsi untuk menutup
-          window.chatbase.close();
+            window.chatbase.close();
         } else {
-          // Jika sedang tertutup, panggil fungsi untuk membuka
-          window.chatbase.open();
+            window.chatbase.open();
         }
       } else {
         console.error("Chatbase API tidak ditemukan atau belum dimuat.");
@@ -379,15 +304,15 @@ document.addEventListener('DOMContentLoaded', () => {
       }
     });
 
-    // --- KODE BARU: MENAMBAHKAN FUNGSI TOMBOL ESCAPE UNTUK MENUTUP CHAT ---
     document.addEventListener('keydown', (event) => {
-        // Cek apakah tombol yang ditekan adalah 'Escape'
         if (event.key === 'Escape') {
-            // Cek apakah chatbot sedang terbuka
             if (window.chatbase && typeof window.chatbase.isOpen === 'function' && window.chatbase.isOpen()) {
-                // Jika ya, tutup chatbot
                 window.chatbase.close();
             }
         }
     });
+
+    // Inisialisasi Aplikasi
+    renderGallery();
+    showSection('home');
 });
