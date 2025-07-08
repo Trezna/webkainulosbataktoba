@@ -47,13 +47,13 @@ header nav button {
     font-family: var(--body-font);
     font-size: 16px;
     padding: 10px 20px;
-    margin: 0 10px;
+    margin: 0 5px;
     border: 1px solid var(--primary-color);
     background-color: transparent;
     color: var(--primary-color);
     cursor: pointer;
     transition: all 0.3s ease;
-    border-radius: 5px;
+    border-radius: 4px;
 }
 
 header nav button:hover, header nav button.nav-active {
@@ -64,10 +64,11 @@ header nav button:hover, header nav button.nav-active {
 /* Content Sections */
 .content-section {
     display: none;
-    padding: 20px;
+    padding: 30px;
     background: var(--card-bg);
     border-radius: 8px;
     margin-top: 20px;
+    animation: fadeIn 0.5s ease-in-out;
 }
 
 .content-section.active {
@@ -115,7 +116,6 @@ header nav button:hover, header nav button.nav-active {
     color: white;
 }
 
-
 /* Ulos Gallery and Cards */
 #ulos-gallery {
     display: grid;
@@ -154,29 +154,25 @@ header nav button:hover, header nav button.nav-active {
 }
 
 /* Detail View */
-#detail-section .ulos-detail {
+.ulos-detail {
     animation: fadeIn 0.5s ease-in-out;
 }
 
-#detail-section h2 {
+.ulos-detail h2 {
+    text-align: center;
     color: var(--primary-color);
     font-family: var(--header-font);
+    margin-bottom: 20px;
 }
 
-#detail-section h3 {
+.ulos-detail h3 {
      color: var(--primary-color);
+     margin-top: 25px;
+     border-bottom: 1px solid #eee;
+     padding-bottom: 5px;
 }
 
-#detail-section img {
-    max-width: 100%;
-    max-height: 400px;
-    display: block;
-    margin: 20px auto;
-    border-radius: 8px;
-    border: 1px solid #ddd;
-}
-
-#detail-section .back-button {
+.ulos-detail .back-button {
     display: inline-block;
     margin-bottom: 20px;
     padding: 10px 20px;
@@ -188,46 +184,132 @@ header nav button:hover, header nav button.nav-active {
     font-size: 16px;
 }
 
-.price-table {
-    width: 100%;
-    border-collapse: collapse;
-    margin: 15px 0;
+.detail-gallery {
+    margin: 20px 0;
+    text-align: center;
 }
-.price-table td {
-    padding: 8px;
+
+#main-detail-image {
+    max-width: 100%;
+    max-height: 500px;
+    border-radius: 8px;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.1);
     border: 1px solid #ddd;
 }
 
-/* Hidden Class */
-.hidden {
-    display: none !important;
+.thumbnail-container {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+    justify-content: center;
+    margin-top: 15px;
+}
+
+.thumbnail {
+    width: 80px;
+    height: 80px;
+    object-fit: cover;
+    border-radius: 5px;
+    cursor: pointer;
+    border: 2px solid transparent;
+    transition: border-color 0.3s ease;
+}
+
+.thumbnail.active {
+    border-color: var(--primary-color);
+}
+
+/* --- GAYA BARU UNTUK FITUR KUIS --- */
+.quiz-container {
+    text-align: center;
+    max-width: 700px;
+    margin: 0 auto;
+    padding: 20px;
+}
+
+.quiz-container h2 {
+    font-family: var(--header-font);
+    color: var(--primary-color);
+    margin-bottom: 25px;
+}
+
+.question-text {
+    font-size: 1.2em;
+    margin-bottom: 20px;
+    min-height: 50px;
+}
+
+.options-container {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    margin-top: 20px;
+}
+
+.option-btn {
+    padding: 12px;
+    font-family: var(--body-font);
+    font-size: 1em;
+    border: 1px solid #ccc;
+    background-color: white;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    border-radius: 5px;
+    text-align: left;
+}
+
+.option-btn:hover:not(:disabled) {
+    background-color: #f0f0f0;
+    border-color: var(--primary-color);
+}
+
+.option-btn:disabled {
+    cursor: not-allowed;
+}
+
+.option-btn.correct {
+    background-color: #d4edda;
+    border-color: #c3e6cb;
+    color: #155724;
+    font-weight: bold;
+}
+
+.option-btn.incorrect {
+    background-color: #f8d7da;
+    border-color: #f5c6cb;
+    color: #721c24;
+}
+
+.feedback {
+    margin-top: 15px;
+    font-weight: bold;
+    min-height: 24px;
+}
+
+.quiz-results {
+    margin-top: 30px;
+    border-top: 2px solid var(--secondary-color);
+    padding-top: 20px;
+}
+
+.cta-button {
+    background-color: var(--primary-color);
+    color: white;
+    padding: 12px 30px;
+    border: none;
+    border-radius: 50px;
+    font-size: 16px;
+    font-weight: 500;
+    cursor: pointer;
+    margin-top: 20px;
+    transition: background-color 0.3s ease, transform 0.3s ease;
+}
+
+.cta-button:hover {
+    background-color: #6a0000;
 }
 
 @keyframes fadeIn {
     from { opacity: 0; }
     to { opacity: 1; }
-}
-
-/* Responsive Design */
-@media (max-width: 768px) {
-    .controls {
-        flex-direction: column;
-        align-items: stretch;
-    }
-
-    #search-bar {
-        width: 100%;
-        box-sizing: border-box; /* Ensures padding is inside the width */
-    }
-
-    #filter-buttons {
-        display: flex;
-        flex-wrap: wrap;
-        gap: 5px;
-        justify-content: center;
-    }
-    
-    #filter-buttons .filter-btn {
-        margin-left: 0;
-    }
 }

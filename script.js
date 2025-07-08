@@ -1,5 +1,5 @@
 document.addEventListener('DOMContentLoaded', () => {
-    // DATA UTAMA APLIKASI
+    // DATA UTAMA APLIKASI (LENGKAP 14 ULOS)
     const ulosData = {
         UB1: {
             name: "Ulos Ragi Hidup",
@@ -7,7 +7,6 @@ document.addEventListener('DOMContentLoaded', () => {
             mainImage: "images/ulos_ragi_hidup.png",
             galleryImages: ["images/ulos_ragi_hidup.png"],
             description: "Ulos Ragi Hidup melambangkan kehidupan dan kebahagian dalam keturunan dengan umur yang panjang (saur matua).",
-            // --- DATA BARU DITAMBAHKAN DI SINI ---
             deskripsiWarna: "Ulos ini berwarna merah kecoklatan di bagian kanan dan kiri, di bagian tengah berwarna biru hitam dengan wanra merah berbentuk persegi diagonal. Dibagian bawah dan atas tengah berwarna putih di penuhi diagonal merah dan hijau yang ter struktur membentuk rantai. di bagian bingkai ulos berwarna coklat dan warna emas sebagai pembatas untuk sisi kanan dan kiri.",
             deskripsiMotif: "Ulos ini memiliki motif persegi geometris yang berwarna emas sebagai pemisah antara kiri, kanan dan tengah dan dibagian tengan berbentuk segitiga yang saling menyambung berwarna biru dan merah kemudian dipisah dengan garis zig-zag merah padan bagian segitiga geometris yang memenuhi latar putih.",
             price: "Rp 300.000 - Rp 2.800.000",
@@ -186,74 +185,49 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     };
     
-    // ... (Sisa kode dari sini ke bawah tetap sama, kecuali fungsi showDetail)
-
-    const btnHome = document.getElementById('btn-home');
-    const btnGallery = document.getElementById('btn-gallery');
-    const homeSection = document.getElementById('home-section');
-    const gallerySection = document.getElementById('gallery-section');
-    const detailSection = document.getElementById('detail-section');
-    const ulosGallery = document.getElementById('ulos-gallery');
-    const searchBar = document.getElementById('search-bar');
-    const filterButtonsContainer = document.getElementById('filter-buttons');
-
-    function renderGallery() {
-        ulosGallery.innerHTML = '';
-        for (const id in ulosData) {
-            const data = ulosData[id];
-            const card = `
-                <div class="ulos-card" data-id="${id}" data-name="${data.name}" data-usage="${data.usageCategory}">
-                    <img src="${data.mainImage}" alt="${data.name}">
-                    <h3>${data.name}</h3>
-                </div>
-            `;
-            ulosGallery.innerHTML += card;
-        }
-        addCardEventListeners();
-    }
+    const elements = {
+        home: document.getElementById('home-section'),
+        gallery: document.getElementById('gallery-section'),
+        detail: document.getElementById('detail-section'),
+        quiz: document.getElementById('quiz-section'),
+        btnHome: document.getElementById('btn-home'),
+        btnGallery: document.getElementById('btn-gallery'),
+        btnQuiz: document.getElementById('btn-quiz'),
+        ulosGallery: document.getElementById('ulos-gallery'),
+        searchBar: document.getElementById('search-bar'),
+        filterButtons: document.getElementById('filter-buttons')
+    };
 
     function showSection(sectionId) {
-        homeSection.classList.remove('active');
-        gallerySection.classList.remove('active');
-        detailSection.classList.remove('active');
-        const activeSection = document.getElementById(`${sectionId}-section`);
-        if (activeSection) {
-            activeSection.classList.add('active');
-        }
-        btnHome.classList.toggle('nav-active', sectionId === 'home');
-        btnGallery.classList.toggle('nav-active', sectionId === 'gallery');
+        document.querySelectorAll('.content-section').forEach(s => s.classList.remove('active'));
+        document.getElementById(`${sectionId}-section`).classList.add('active');
+        document.querySelectorAll('nav button').forEach(btn => btn.classList.remove('nav-active'));
+        document.getElementById(`btn-${sectionId}`).classList.add('nav-active');
     }
 
-    btnHome.addEventListener('click', () => showSection('home'));
-    btnGallery.addEventListener('click', () => showSection('gallery'));
+    elements.btnHome.addEventListener('click', () => showSection('home'));
+    elements.btnGallery.addEventListener('click', () => showSection('gallery'));
+    elements.btnQuiz.addEventListener('click', () => {
+        showSection('quiz');
+        startQuiz();
+    });
 
-    // <<< FUNGSI INI YANG DIUBAH TATA LETAKNYA >>>
+    function renderGallery() {
+        elements.ulosGallery.innerHTML = '';
+        for (const id in ulosData) {
+            const data = ulosData[id];
+            const card = `<div class="ulos-card" data-id="${id}"><img src="${data.mainImage}" alt="${data.name}"><h3>${data.name}</h3></div>`;
+            elements.ulosGallery.innerHTML += card;
+        }
+        document.querySelectorAll('.ulos-card').forEach(card => card.addEventListener('click', () => showDetail(card.dataset.id)));
+    }
+    
     function showDetail(ulosId) {
         const data = ulosData[ulosId];
-        let galleryHTML = '';
         let referensiHTML = '';
-
-        if (data.galleryImages && data.galleryImages.length > 1) {
-            let thumbnailsHTML = '';
-            data.galleryImages.forEach((imgSrc, index) => {
-                thumbnailsHTML += `<img src="${imgSrc}" alt="Thumbnail ${data.name} ${index + 1}" class="thumbnail ${index === 0 ? 'active' : ''}">`;
-            });
-            galleryHTML = `
-                <div class="detail-gallery">
-                    <div class="main-image-container"><img src="${data.mainImage}" alt="${data.name}" id="main-detail-image"></div>
-                    <div class="thumbnail-container">${thumbnailsHTML}</div>
-                </div>`;
-        } else {
-            galleryHTML = `
-                <div class="detail-gallery">
-                    <div class="main-image-container"><img src="${data.mainImage}" alt="${data.name}" id="main-detail-image"></div>
-                </div>`;
-        }
-        
         if (data.referensi) {
             referensiHTML = '<h3>Referensi</h3><ul class="referensi-list">';
-            const refs = data.referensi.split(',');
-            refs.forEach(ref => {
+            data.referensi.split(',').forEach(ref => {
                 const parts = ref.split(':');
                 const type = parts[0].trim().replace(/_/g, ' ');
                 const url = parts.slice(1).join(':').trim();
@@ -262,81 +236,118 @@ document.addEventListener('DOMContentLoaded', () => {
             });
             referensiHTML += '</ul>';
         }
-
-        // --- TATA LETAK BARU DITERAPKAN DI SINI ---
-        detailSection.innerHTML = `
+        
+        elements.detail.innerHTML = `
             <div class="ulos-detail">
                 <button class="back-button">&larr; Kembali ke Galeri</button>
                 <h2>${data.name}</h2>
-                ${galleryHTML}
-                <h3>Deskripsi</h3>
-                <p>${data.description}</p>
-                
-                <h3>Deskripsi Warna</h3>
-                <p>${data.deskripsiWarna}</p>
-
-                <h3>Deskripsi Motif</h3>
-                <p>${data.deskripsiMotif}</p>
-                
-                <h3>Penggunaan dalam Acara</h3>
-                <p>${data.penggunaanDalamAcara}</p>
-                
-                <h3>Pengguna</h3>
-                <p>${data.pengguna}</p>
-                
-                <h3>Perkiraan Harga</h3>
-                <p>${data.price}</p>
-                
+                <div class="detail-gallery">
+                    <div class="main-image-container"><img src="${data.mainImage}" alt="${data.name}" id="main-detail-image"></div>
+                </div>
+                <h3>Deskripsi</h3><p>${data.description}</p>
+                <h3>Deskripsi Warna</h3><p>${data.deskripsiWarna}</p>
+                <h3>Deskripsi Motif</h3><p>${data.deskripsiMotif}</p>
+                <h3>Penggunaan dalam Acara</h3><p>${data.penggunaanDalamAcara}</p>
+                <h3>Pengguna</h3><p>${data.pengguna}</p>
+                <h3>Perkiraan Harga</h3><p>${data.price}</p>
                 ${referensiHTML}
             </div>`;
-        // --- AKHIR BAGIAN YANG DIUBAH ---
 
-        detailSection.querySelector('.back-button').addEventListener('click', () => {
-             showSection('gallery');
-        });
-        
-        if (data.galleryImages && data.galleryImages.length > 1) {
-            detailSection.querySelectorAll('.thumbnail').forEach(thumb => {
-                thumb.addEventListener('click', () => {
-                    document.getElementById('main-detail-image').src = thumb.src;
-                    detailSection.querySelector('.thumbnail.active').classList.remove('active');
-                    thumb.classList.add('active');
-                });
-            });
-        }
-        
+        elements.detail.querySelector('.back-button').addEventListener('click', () => showSection('gallery'));
         showSection('detail');
     }
 
-    function addCardEventListeners() {
-        document.querySelectorAll('.ulos-card').forEach(card => {
-            card.addEventListener('click', () => {
-                const ulosId = card.getAttribute('data-id');
-                showDetail(ulosId);
-            });
-        });
-    }
-
-    searchBar.addEventListener('keyup', (e) => {
+    elements.searchBar.addEventListener('keyup', (e) => {
         const searchTerm = e.target.value.toLowerCase();
         document.querySelectorAll('.ulos-card').forEach(card => {
-            const name = card.getAttribute('data-name').toLowerCase();
+            const name = ulosData[card.dataset.id].name.toLowerCase();
             card.style.display = name.includes(searchTerm) ? 'block' : 'none';
         });
     });
 
-    filterButtonsContainer.addEventListener('click', (e) => {
+    elements.filterButtons.addEventListener('click', (e) => {
         if (e.target.classList.contains('filter-btn')) {
-            filterButtonsContainer.querySelector('.active').classList.remove('active');
+            elements.filterButtons.querySelector('.active').classList.remove('active');
             e.target.classList.add('active');
-            const filter = e.target.getAttribute('data-filter');
+            const filter = e.target.dataset.filter;
             document.querySelectorAll('.ulos-card').forEach(card => {
-                const usage = card.getAttribute('data-usage');
+                const usage = ulosData[card.dataset.id].usageCategory;
                 card.style.display = (filter === 'all' || usage.includes(filter)) ? 'block' : 'none';
             });
         }
     });
+
+    // --- LOGIKA BARU UNTUK FITUR KUIS INTERAKTIF ---
+    const quizBank = [
+        { question: "Ulos apakah yang sering disebut 'Ulos Hela' dan diberikan kepada menantu laki-laki?", options: ["Ulos Ragi Hidup", "Ulos Ragi Hotang", "Ulos Sibolang"], correct: 1 },
+        { question: "Dalam acara apa Ulos Bolean umumnya digunakan?", options: ["Pernikahan", "Kelahiran", "Duka Cita"], correct: 2 },
+        { question: "Ulos yang melambangkan harapan agar kelahiran anak diiringi kelahiran berikutnya adalah...", options: ["Ulos Mangiring", "Ulos Sadum", "Ulos Pinuncaan"], correct: 0 },
+        { question: "Ulos yang dianggap salah satu yang termahal dan biasa dipakai oleh raja-raja adat adalah...", options: ["Ulos Sadum", "Ulos Simpar", "Ulos Pinuncaan"], correct: 2 },
+        { question: "Sebagai selendang orang tua untuk melayat orang yang meninggal, ulos yang digunakan adalah...", options: ["Ulos Antak-Antak", "Ulos Ragi Hidup", "Ulos Bintang Maratur"], correct: 0 },
+        { question: "Ulos yang penuh warna-warni ceria dan cocok untuk suasana suka cita adalah...", options: ["Ulos Sibolang", "Ulos Sadum", "Ulos Bolean"], correct: 1 },
+        { question: "Untuk acara syukuran kehamilan tujuh bulanan, ulos yang diberikan adalah...", options: ["Ulos Bintang Maratur", "Ulos Mangiring", "Ulos Ragi Hotang"], correct: 0 },
+        { question: "Ulos yang digunakan sebagai ikat kepala atau tali-tali oleh tuan rumah adalah...", options: ["Ulos Tumtuman", "Ulos Simpar", "Ulos Suri-Suri Ganjang"], correct: 0 },
+        { question: "Ulos Ragi Hidup memiliki makna harapan untuk...", options: ["Kekayaan", "Jabatan", "Umur yang panjang"], correct: 2 },
+        { question: "Untuk sekadar meramaikan acara (panoropi), para wanita biasanya menggunakan...", options: ["Ulos Pinuncaan", "Ulos Simpar", "Ulos Harungguan"], correct: 1 },
+        { question: "Ulos yang pada zaman dahulu digunakan gadis-gadis sebagai lilitan di dada (Hobahoba) adalah...", options: ["Ulos Ragi Hunting", "Ulos Sadum", "Ulos Mangiring"], correct: 0 },
+        { question: "Pada adat Batak, prosesi memberikan ulos disebut...", options: ["Manortor", "Mangulosi", "Martarombo"], correct: 1 },
+        { question: "Ulos yang memiliki motif seperti sisir adalah...", options: ["Ulos Ragi Hotang", "Ulos Suri-Suri Ganjang", "Ulos Antak-Antak"], correct: 1 },
+        { question: "Ulos yang digunakan sebagai selimut oleh keluarga dari golongan kaya adalah...", options: ["Ulos Harungguan", "Ulos Sibolang", "Ulos Ragi Hidup"], correct: 0 },
+        { question: "Untuk acara memasuki rumah baru, ulos yang sering diberikan sebagai hadiah adalah...", options: ["Ulos Ragi Hotang", "Ulos Bintang Maratur", "Ulos Ragi Hidup"], correct: 1 }
+    ];
+
+    let currentQuizQuestions = [];
+    let currentQuestionIndex = 0;
+    let score = 0;
+
+    function startQuiz() {
+        currentQuizQuestions = quizBank.sort(() => 0.5 - Math.random()).slice(0, 3);
+        currentQuestionIndex = 0;
+        score = 0;
+        renderQuiz();
+    }
+
+    function renderQuiz() {
+        if (currentQuestionIndex >= currentQuizQuestions.length) {
+            showQuizResults();
+            return;
+        }
+        const q = currentQuizQuestions[currentQuestionIndex];
+        let optionsHTML = q.options.map((option, index) => `<button class="option-btn" data-index="${index}">${option}</button>`).join('');
+        elements.quiz.innerHTML = `<div class="quiz-container"><h2>Kuis Interaktif Ulos</h2><p>Pertanyaan ${currentQuestionIndex + 1} dari ${currentQuizQuestions.length}</p><div class="question-text">${q.question}</div><div class="options-container">${optionsHTML}</div><div class="feedback"></div></div>`;
+        document.querySelectorAll('.option-btn').forEach(btn => {
+            btn.addEventListener('click', (e) => selectAnswer(parseInt(e.target.dataset.index)));
+        });
+    }
+
+    function selectAnswer(selectedIndex) {
+        const q = currentQuizQuestions[currentQuestionIndex];
+        const feedbackEl = document.querySelector('#quiz-section .feedback');
+        const optionButtons = document.querySelectorAll('#quiz-section .option-btn');
+        optionButtons.forEach(btn => btn.disabled = true);
+        if (selectedIndex === q.correct) {
+            score++;
+            feedbackEl.textContent = "Jawaban Benar!";
+            feedbackEl.style.color = 'green';
+            optionButtons[selectedIndex].classList.add('correct');
+        } else {
+            feedbackEl.textContent = `Jawaban Salah. Yang benar adalah ${q.options[q.correct]}.`;
+            feedbackEl.style.color = 'red';
+            optionButtons[selectedIndex].classList.add('incorrect');
+            optionButtons[q.correct].classList.add('correct');
+        }
+        setTimeout(() => {
+            currentQuestionIndex++;
+            renderQuiz();
+        }, 2000);
+    }
+
+    function showQuizResults() {
+        elements.quiz.innerHTML = `<div class="quiz-container quiz-results"><h2>Hasil Kuis</h2><p>Anda menjawab benar ${score} dari ${currentQuizQuestions.length} pertanyaan!</p><button class="cta-button" id="restart-quiz-btn">Coba Lagi</button></div>`;
+        document.getElementById('restart-quiz-btn').addEventListener('click', startQuiz);
+    }
     
+    // Inisialisasi Aplikasi
     renderGallery();
     showSection('home');
 });
